@@ -1,12 +1,10 @@
 import sys
 import numpy as np
 import scipy.stats as sp
-import scipy.special
 
 file_name = sys.argv[1]
-number_sequenced = int(sys.argv[2])
-number_sterile = int(sys.argv[3])
-number_fertile = int(sys.argv[4])
+number_sterile = int(sys.argv[2])
+number_fertile = int(sys.argv[3])
 
 individuals = np.loadtxt(file_name, dtype=int)
 individuals = individuals.T
