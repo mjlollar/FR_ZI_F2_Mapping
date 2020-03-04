@@ -6,7 +6,7 @@ file_name = sys.argv[1]
 number_sterile = int(sys.argv[2])
 number_fertile = int(sys.argv[3])
 
-individuals = np.loadtxt(file_name, dtype=int)
+individuals = np.loadtxt(file_name, dtype=int, delimiter='\t')
 individuals = individuals.T
 
 fisher_1 = []
@@ -14,7 +14,10 @@ fisher_2 = []
 fisher_3 = []
 fisher_4 = []
 
+j=0
 for value in range(0,individuals.shape[1]):
+	print(j)
+	j+=1
 	for value2 in range(0, individuals.shape[1]):
 		fisher1=0
 		fisher2=0
@@ -40,19 +43,18 @@ for value in range(0,individuals.shape[1]):
 		for window in individuals[number_sterile:number_fertile,:]:
 			if window[value] == 0:
 				if window[value2] == 2:
-					fisher3+= 1
+					fisher3 += 1
 				elif window[value2] != 2:
 					fisher4 += 1
 			elif window[value] != 0:
 				fisher4 += 1
 			else:
 				pass
-		fisher_3.append(fisher1)
-		fisher_4.append(fisher2)
+		fisher_3.append(fisher3)
+		fisher_4.append(fisher4)
 		fisher3=0
 		fisher4=0
 
-assert len(fisher_1) == len(fisher_2) == len(fisher_3) == len(fisher_4)
 
 p_values = []
 
@@ -61,3 +63,22 @@ for group in range(0, len(fisher_1)):
 	oddsratio, pvalue = sp.fisher_exact([[fisher_1[i], fisher_2[i]], [fisher_3[i], fisher_4[i]]])
 	p_values.append(pvalue)
 	i += 1
+
+window_by_window = open('output_sterile_LW_03032020.csv', 'w')
+
+header = list(range(1,6444))
+header = map(str, header)
+window_by_window.write(",".join(header)+'\n')
+
+window_row = []
+cutoff = 6443
+for x in range(0, len(p_values)):
+	window_row.append(str(p_values[x]))
+	if len(window_row) == cutoff:
+		window_by_window.write(','.join(window_row) + '\n')
+		window_row = []
+	else:
+		pass
+
+window_by_window.close()
+
