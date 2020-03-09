@@ -76,6 +76,7 @@ def printer(pvalues, group1, group2, group2_windows):
 			listed_windows.write(group1+"-"+str(w1) + "," + group2+"-"+str(w2) + "," + str(x) + '\n')
 			w2 = 1
 			w1 += 1
+			window_2 = 0
 		else:
 			listed_windows.write(group1+"-"+str(w1) + "," + group2+"-"+str(w2) + "," + str(x) + '\n')
 			w2 += 1
