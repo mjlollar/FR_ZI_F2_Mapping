@@ -1,3 +1,13 @@
+# Script used to perform pairwise FET scans between all windows along the genome.
+# For simplicity, script is set up so that every window is compared to each other, such that some windows will not provide sufficient information 
+# (e.g. windows compared to themselves)
+# Outputs two files. The first is a csv file with genome along the X and Y axis and pvalues for each comparison. 
+# This allows visualization of window by window significance. The second file is a list of three columns in a csv. Window1, Window2, pvalue.
+
+#Input file should contain individuals as columns and windows as rows, with all sterile indidivuals in the first columns
+
+#Sample input is: > Mapping_Dual_output.py <input_file> <Number of steriles> <Total number of individuals(columns)>
+
 import sys
 import numpy as np
 import scipy.stats as sp
@@ -84,7 +94,6 @@ for x in range(0, len(p_values)):
 
 window_by_window.close()
 
-
 listed_windows = open('output_LW_03082020.csv', 'w')
 
 listed_windows.write("window1"+","+"window2"+","+"p-value"+ '\n')
@@ -104,4 +113,3 @@ for x in p_values:
 		wi2 += 1
 
 listed_windows.close()
-
