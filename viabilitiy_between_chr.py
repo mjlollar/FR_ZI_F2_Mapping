@@ -1,3 +1,7 @@
+# Lines with "#ADAPT" will need to be adapted for correct window breaks in input file
+# Input file should be .csv file with individuals as columns and rows as windows
+
+
 import sys
 import numpy as np
 import scipy.stats as sp
@@ -6,7 +10,7 @@ file_name = sys.argv[1]
 Xbreak = int(sys.argv[2])
 Chr2break = int(sys.argv[3])
 
-individuals = np.loadtxt(file_name, dtype=int, delimiter=' ')
+individuals = np.loadtxt(file_name, dtype=int, delimiter='\t')
 
 individuals = individuals.T
 
@@ -87,7 +91,7 @@ p_values = []
 
 chr_compare(X, Chr2)
 fisher_exact_test(fisher_1, fisher_2, fisher_3, fisher_4)
-printer(p_values, "X", "Chr2", 2)
+printer(p_values, "X", "Chr2", 2) # ADAPT
 
 p_values = []
 fisher_1 = []
@@ -97,7 +101,7 @@ fisher_4 = []
 
 chr_compare(X, Chr3)
 fisher_exact_test(fisher_1, fisher_2, fisher_3, fisher_4)
-printer(p_values, "X", "Chr3", 3)
+printer(p_values, "X", "Chr3", 3) #ADAPT
 
 p_values = []
 fisher_1 = []
@@ -107,7 +111,7 @@ fisher_4 = []
 
 chr_compare(Chr2, Chr3)
 fisher_exact_test(fisher_1, fisher_2, fisher_3, fisher_4)
-printer(p_values, "Chr2", "Chr3", 3)
+printer(p_values, "Chr2", "Chr3", 3) # ADAPT
 
 p_values = []
 fisher_1 = []
@@ -117,7 +121,7 @@ fisher_4 = []
 
 chr_compare(Chr2, X)
 fisher_exact_test(fisher_1, fisher_2, fisher_3, fisher_4)
-printer(p_values, "Chr2", "X", 2)
+printer(p_values, "Chr2", "X", 2) # ADAPT
 
 p_values = []
 fisher_1 = []
@@ -127,7 +131,7 @@ fisher_4 = []
 
 chr_compare(Chr3, X)
 fisher_exact_test(fisher_1, fisher_2, fisher_3, fisher_4)
-printer(p_values, "Chr3", "X", 2)
+printer(p_values, "Chr3", "X", 2) # ADAPT
 
 p_values = []
 fisher_1 = []
@@ -137,4 +141,4 @@ fisher_4 = []
 
 chr_compare(Chr3, Chr2)
 fisher_exact_test(fisher_1, fisher_2, fisher_3, fisher_4)
-printer(p_values, "Chr3", "Chr2", 2)
+printer(p_values, "Chr3", "Chr2", 2) # ADAPT
