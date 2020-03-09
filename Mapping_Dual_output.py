@@ -69,7 +69,6 @@ for value in range(0,individuals.shape[1]):
 p_values = []
 
 i=0
-counter = 0
 for group in range(0, len(fisher_1)):
 	oddsratio, pvalue = sp.fisher_exact([[fisher_1[i], fisher_2[i]], [fisher_3[i], fisher_4[i]]])
 	p_values.append(pvalue)
