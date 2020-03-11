@@ -13,6 +13,8 @@ with open(in_name, 'r') as infile, open(out_name, 'w') as outfile:
 	writer.writeheader()
 	for row in reader:
 		if row['p-value'] <= '0.0003797': # ADAPT to null p-value of choice
-			writer.writerow(row['window1'], row['window2'], row['p-value'])
+			writer.writerow(row)
 		else:
 			pass
+infile.close()
+outfile.close()
