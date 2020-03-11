@@ -7,7 +7,9 @@
 import random as rd
 import sys
 import csv
+import os
 
+#Randomly arrange columns(individuals)
 for x in range(0,1000): #Set upper bound to number of desired output files
 	filename = "perm_out_%d.csv" % x
 	with open(sys.argv[1], 'r') as infile, open(filename, 'w') as outfile:
@@ -19,6 +21,7 @@ for x in range(0,1000): #Set upper bound to number of desired output files
 		for row in csv.DictReader(infile):
 			writer.writerow(row)
 
+#Remove first row [necessary to remove the column identifier used above]
 for x in range (1,1000): #Set upper bound to number of desired output files, Must match number on line 11
 	filename = "perm_out_%d.csv" % x 
 	filename2 = "perms_out_%d.csv" % x
@@ -27,3 +30,5 @@ for x in range (1,1000): #Set upper bound to number of desired output files, Mus
 			next(file)
 			for line in file:
 				new_file.write(line)
+#Remove intermediate files
+os.remove(perm_out_*.csv)
