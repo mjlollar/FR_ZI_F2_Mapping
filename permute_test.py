@@ -1,4 +1,4 @@
-## Alternative script to use when only between chromosome windows are considered.
+## Alternative script to use when between chromosome windows are considered.
 
 ## Need to update output to call appropriate windows on dual output
 
