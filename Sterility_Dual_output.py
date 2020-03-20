@@ -1,13 +1,3 @@
-# Script used to perform pairwise FET scans between all windows along the genome.
-# For simplicity, script is set up so that every window is compared to each other, such that some windows will not provide sufficient information 
-# (e.g. windows compared to themselves)
-# Outputs two files. The first is a csv file with genome along the X and Y axis and pvalues for each comparison. 
-# This allows visualization of window by window significance. The second file is a list of three columns in a csv. Window1, Window2, pvalue.
-
-#Input file should contain individuals as columns and windows as rows, with all sterile indidivuals in the first columns
-
-#Sample input is: > Mapping_Dual_output.py <input_file> <Number of steriles> <Total number of individuals(columns)>
-
 import sys
 import numpy as np
 import scipy.stats as sp
@@ -16,7 +6,7 @@ file_name = sys.argv[1]
 number_sterile = int(sys.argv[2])
 number_total = int(sys.argv[3])
 
-individuals = np.loadtxt(file_name, dtype=int, delimiter='\t')
+individuals = np.loadtxt(file_name, dtype=int, delimiter=',')
 individuals = individuals.T
 
 fisher_1 = []
@@ -35,12 +25,20 @@ for value in range(0,individuals.shape[1]):
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher1 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher2 += 1
+				elif window[value2] == 1:
+					fisher2 += 1
+				elif window[value2] == -999:
+					pass
 				else:
 					pass
-			elif window[value] != 0:
+			elif window[value] == 1:
 				fisher2 += 1
+			elif window[value] == 2:
+				fisher2 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_1.append(fisher1)
@@ -54,10 +52,20 @@ for value in range(0,individuals.shape[1]):
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher3 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher4 += 1
-			elif window[value] != 0:
+				elif window[value2] == 1:
+					fisher4 += 1
+				elif window[value2] == -999:
+					pass
+				else:
+					pass
+			elif window[value] == 1:
 				fisher4 += 1
+			elif window[value] == 2:
+				fisher4 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_3.append(fisher3)
@@ -65,24 +73,24 @@ for value in range(0,individuals.shape[1]):
 		fisher3=0
 		fisher4=0
 
-
 p_values = []
 
 i=0
+counter = 0
 for group in range(0, len(fisher_1)):
 	oddsratio, pvalue = sp.fisher_exact([[fisher_1[i], fisher_2[i]], [fisher_3[i], fisher_4[i]]])
 	p_values.append(pvalue)
 	print(i)
 	i += 1
 
-window_by_window = open('output_sterile_LW_03082020.csv', 'w')
+window_by_window = open('54_403_final_output_heatmap_50kb.csv', 'w')
 
-header = list(range(1,6444))
+header = list(range(1,2579))
 header = map(str, header)
 window_by_window.write(",".join(header)+'\n')
 
 window_row = []
-cutoff = 6443
+cutoff = 2578
 for x in range(0, len(p_values)):
 	window_row.append(str(p_values[x]))
 	if len(window_row) == cutoff:
@@ -93,7 +101,8 @@ for x in range(0, len(p_values)):
 
 window_by_window.close()
 
-listed_windows = open('output_LW_03082020.csv', 'w')
+
+listed_windows = open('54_403_final_output_50kb.csv', 'w')
 
 listed_windows.write("window1"+","+"window2"+","+"p-value"+ '\n')
 
@@ -112,3 +121,4 @@ for x in p_values:
 		wi2 += 1
 
 listed_windows.close()
+
