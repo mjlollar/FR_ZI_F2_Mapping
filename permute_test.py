@@ -1,4 +1,4 @@
-## Alternative script to use when between chromosome windows are considered.
+## Alternative script to use when only between chromosome windows are considered.
 
 ## Need to update output to call appropriate windows on dual output
 
@@ -24,7 +24,7 @@ individuals = np.loadtxt(file_name, dtype=int, delimiter=',')
 individuals = individuals.T
 
 
-## X to Chr2, Chr3
+## X to Chr2 and Chr3
 for value in range(0,545):			#First range changes as a function of windows on the X
 	for value2 in range(545,2579):		#Second range changes as a function of windows on Chr2 & Chr3
 		fisher1 = 0
@@ -33,12 +33,20 @@ for value in range(0,545):			#First range changes as a function of windows on th
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher1 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher2 += 1
+				elif window[value2] == 1:
+					fisher2 += 1
+				elif window[value2] == -999:
+					pass
 				else:
 					pass
-			elif window[value] != 0:
+			elif window[value] == 1:
 				fisher2 += 1
+			elif window[value] == 2:
+				fisher2 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_1.append(fisher1)
@@ -52,10 +60,20 @@ for value in range(0,545):			#First range changes as a function of windows on th
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher3 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher4 += 1
-			elif window[value] != 0:
+				elif window[value2] == 1:
+					fisher4 += 1
+				elif window[value2] == -999:
+					pass
+				else:
+					pass
+			elif window[value] == 1:
 				fisher4 += 1
+			elif window[value] == 2:
+				fisher4 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_3.append(fisher3)
@@ -72,12 +90,20 @@ for value in range(545,1524):			#First range changes as a function of windows on
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher1 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher2 += 1
+				elif window[value2] == 1:
+					fisher2 += 1
+				elif window[value2] == -999:
+					pass
 				else:
 					pass
-			elif window[value] != 0:
+			elif window[value] == 1:
 				fisher2 += 1
+			elif window[value] == 2:
+				fisher2 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_1.append(fisher1)
@@ -91,10 +117,20 @@ for value in range(545,1524):			#First range changes as a function of windows on
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher3 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher4 += 1
-			elif window[value] != 0:
+				elif window[value2] == 1:
+					fisher4 += 1
+				elif window[value2] == -999:
+					pass
+				else:
+					pass
+			elif window[value] == 1:
 				fisher4 += 1
+			elif window[value] == 2:
+				fisher4 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_3.append(fisher3)
@@ -112,12 +148,20 @@ for value in range(545,1524):			#First range changes as a function of windows on
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher1 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher2 += 1
+				elif window[value2] == 1:
+					fisher2 += 1
+				elif window[value2] == -999:
+					pass
 				else:
 					pass
-			elif window[value] != 0:
+			elif window[value] == 1:
 				fisher2 += 1
+			elif window[value] == 2:
+				fisher2 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_1.append(fisher1)
@@ -131,10 +175,20 @@ for value in range(545,1524):			#First range changes as a function of windows on
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher3 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher4 += 1
-			elif window[value] != 0:
+				elif window[value2] == 1:
+					fisher4 += 1
+				elif window[value2] == -999:
+					pass
+				else:
+					pass
+			elif window[value] == 1:
 				fisher4 += 1
+			elif window[value] == 2:
+				fisher4 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_3.append(fisher3)
@@ -151,12 +205,20 @@ for value in range(1524,2579):			#First range changes as a function of windows o
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher1 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher2 += 1
+				elif window[value2] == 1:
+					fisher2 += 1
+				elif window[value2] == -999:
+					pass
 				else:
 					pass
-			elif window[value] != 0:
+			elif window[value] == 1:
 				fisher2 += 1
+			elif window[value] == 2:
+				fisher2 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_1.append(fisher1)
@@ -170,10 +232,20 @@ for value in range(1524,2579):			#First range changes as a function of windows o
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher3 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher4 += 1
-			elif window[value] != 0:
+				elif window[value2] == 1:
+					fisher4 += 1
+				elif window[value2] == -999:
+					pass
+				else:
+					pass
+			elif window[value] == 1:
 				fisher4 += 1
+			elif window[value] == 2:
+				fisher4 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_3.append(fisher3)
@@ -190,12 +262,22 @@ for value in range(1524,2579):			#First range changes as a function of windows o
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher1 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher2 += 1
+				elif window[value2] == 1:
+					fisher2 += 1
+				elif window[value2] == -999:
+					pass
 				else:
 					pass
-			elif window[value] != 0:
+				else:
+					pass
+			elif window[value] == 1:
 				fisher2 += 1
+			elif window[value] == 2:
+				fisher2 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_1.append(fisher1)
@@ -209,10 +291,20 @@ for value in range(1524,2579):			#First range changes as a function of windows o
 			if window[value] == 0:
 				if window[value2] == 2:
 					fisher3 += 1
-				elif window[value2] != 2:
+				elif window[value2] == 0:
 					fisher4 += 1
-			elif window[value] != 0:
+				elif window[value2] == 1:
+					fisher4 += 1
+				elif window[value2] == -999:
+					pass
+				else:
+					pass
+			elif window[value] == 1:
 				fisher4 += 1
+			elif window[value] == 2:
+				fisher4 += 1
+			elif window[value] == -999:
+				pass
 			else:
 				pass
 		fisher_3.append(fisher3)
@@ -231,6 +323,6 @@ for group in range(0, len(fisher_1)):
 
 min_pvalue = min(p_values)
 
-window_by_window = open(output, 'w')
-
-window_by_window.write(str(min_pvalue))
+out_file = open(output, 'w')
+out_file.write(str(min_pvalue))
+out_file.close()
