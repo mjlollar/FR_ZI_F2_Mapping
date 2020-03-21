@@ -270,8 +270,6 @@ for value in range(1524,2579):			#First range changes as a function of windows o
 					pass
 				else:
 					pass
-				else:
-					pass
 			elif window[value] == 1:
 				fisher2 += 1
 			elif window[value] == 2:
