@@ -12,7 +12,7 @@ with open(in_name, 'r') as infile, open(out_name, 'w') as outfile:
 	writer = csv.DictWriter(outfile, fieldnames=fieldnames, delimiter=',')
 	writer.writeheader()
 	for row in reader:
-		if row['p-value'] <= '0.0003797': # ADAPT to null p-value of choice
+		if float(row['p-value']) <= 0.0001: # ADAPT to null p-value of choice
 			writer.writerow(row)
 		else:
 			pass
