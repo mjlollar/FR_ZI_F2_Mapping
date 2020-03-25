@@ -1,9 +1,6 @@
 ## Alternative script to use when only between chromosome windows are considered.
-
 ## Need to update output to call appropriate windows on dual output
-
 ## For now will just be used to find lowest null p-value in permuations
-
 ## Current window cutoffs based on 50kb window markers
 
 import sys
