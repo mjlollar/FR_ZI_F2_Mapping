@@ -34,17 +34,38 @@ def chr_compare(array1, array2):
 				if array1[row,column] == 0:
 					if array2[row, column2] == 2:
 						fisher1 += 1
-					elif array2[row, column2] != 2:
+					elif array2[row, column2] == 0:
 						fisher3 += 1
+					elif array2[row, column2] == 1:
+						fisher3 += 1
+					elif array2[row, column2] == -999:
+						pass	
 					else:
 						pass
-				elif array1[row,column] != 0:
+				elif array1[row,column] == 1:
 					if array2[row, column2] == 2:
 						fisher2 +=1
-					elif array2[row, column2] != 2:
+					elif array2[row, column2] == 0:
 						fisher4 += 1
+					elif array2[row, column2] == 1:
+						fisher4 += 1
+					elif array2[row, column2] == -999:
+						pass
 					else:
 						pass
+				elif array1[row,column] == 2:
+					if array2[row, column2] == 2:
+						fisher2 +=1
+					elif array2[row, column2] == 0:
+						fisher4 += 1
+					elif array2[row, column2] == 1:
+						fisher4 += 1
+					elif array2[row, column2] == -999:
+						pass
+					else:
+						pass				
+				elif array1[row, column] == -999:
+					pass
 				else:
 					pass
 			fisher_1.append(fisher1)
@@ -92,7 +113,7 @@ p_values = []
 
 chr_compare(X, Chr2)
 fisher_exact_test(fisher_1, fisher_2, fisher_3, fisher_4)
-printer(p_values, "X", "Chr2", 2) # ADAPT
+printer(p_values, "X", "Chr2", 3) # ADAPT
 
 p_values = []
 fisher_1 = []
@@ -122,7 +143,7 @@ fisher_4 = []
 
 chr_compare(Chr2, X)
 fisher_exact_test(fisher_1, fisher_2, fisher_3, fisher_4)
-printer(p_values, "Chr2", "X", 2) # ADAPT
+printer(p_values, "Chr2", "X", 3) # ADAPT
 
 p_values = []
 fisher_1 = []
@@ -132,7 +153,7 @@ fisher_4 = []
 
 chr_compare(Chr3, X)
 fisher_exact_test(fisher_1, fisher_2, fisher_3, fisher_4)
-printer(p_values, "Chr3", "X", 2) # ADAPT
+printer(p_values, "Chr3", "X", 3) # ADAPT
 
 p_values = []
 fisher_1 = []
@@ -142,4 +163,4 @@ fisher_4 = []
 
 chr_compare(Chr3, Chr2)
 fisher_exact_test(fisher_1, fisher_2, fisher_3, fisher_4)
-printer(p_values, "Chr3", "Chr2", 2) # ADAPT
+printer(p_values, "Chr3", "Chr2", 3) # ADAPT
