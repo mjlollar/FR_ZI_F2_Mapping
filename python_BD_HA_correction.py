@@ -3,7 +3,7 @@ import numpy as np
 import statsmodels.stats.contingency_tables as sm
 
 in_file = sys.argv[1]
-#out_file = sys.argv[2]
+out_file = sys.argv[2]
 
 df = np.loadtxt(in_file, dtype=float, delimiter=',')
 
